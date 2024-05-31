@@ -11,26 +11,38 @@ const employee = [
       },
     },
   },
-  {
-    employmentDetails: {
-      position: "Software Engineer",
-      department: "Engineering",
-      startDate: "2022-01-01",
-      endDate: null,
-      manager: {
-        firstName: "Alice",
-        lastName: "Smith",
-        email: "alice@example.com",
+  [
+    {
+      employmentDetails: {
+        position: "Software Engineer",
+        department: "Engineering",
+        startDate: "2022-01-01",
+        endDate: null,
+        manager: {
+          firstName: "Alice",
+          lastName: "Smith",
+          email: "alice@example.com",
+        },
       },
     },
-  },
+  ],
 ];
 
 function getEmployeeInfo(employee, key) {
-  for (let section of employee) {
-    for (let subSection in section) {
-      if (section[subSection].hasOwnProperty(key)) {
-        return section[subSection][key];
+  for (let item of employee) {
+    if (Array.isArray(item)) {
+      for (let subItem of item) {
+        for (let subSection in subItem) {
+          if (subItem[subSection].hasOwnProperty(key)) {
+            return subItem[subSection][key];
+          }
+        }
+      }
+    } else {
+      for (let section in item) {
+        if (item[section].hasOwnProperty(key)) {
+          return item[section][key];
+        }
       }
     }
   }
