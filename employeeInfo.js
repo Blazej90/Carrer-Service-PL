@@ -1,32 +1,37 @@
-const employee = {
-  personalInfo: {
-    firstName: "John",
-    lastName: "Doe",
-    age: 30,
-    address: {
-      street: "123 Main St",
-      city: "Anytown",
-      state: "NY",
-      postalCode: "12345",
+const employee = [
+  {
+    personalInfo: {
+      firstName: "John",
+      lastName: "Doe",
+      age: 30,
+      address: {
+        city: "Anytown",
+        state: "NY",
+        postalCode: "12345",
+      },
     },
   },
-  employmentDetails: {
-    position: "Software Engineer",
-    department: "Engineering",
-    startDate: "2022-01-01",
-    endDate: null,
-    manager: {
-      firstName: "Alice",
-      lastName: "Smith",
-      email: "alice@example.com",
+  {
+    employmentDetails: {
+      position: "Software Engineer",
+      department: "Engineering",
+      startDate: "2022-01-01",
+      endDate: null,
+      manager: {
+        firstName: "Alice",
+        lastName: "Smith",
+        email: "alice@example.com",
+      },
     },
   },
-};
+];
 
 function getEmployeeInfo(employee, key) {
-  for (let section in employee) {
-    if (employee[section].hasOwnProperty(key)) {
-      return employee[section][key];
+  for (let section of employee) {
+    for (let subSection in section) {
+      if (section[subSection].hasOwnProperty(key)) {
+        return section[subSection][key];
+      }
     }
   }
   return "Klucz nie istnieje";
